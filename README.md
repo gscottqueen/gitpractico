@@ -31,7 +31,7 @@ A---B  origin <repo-url>
 The repo is cloned into the specified directory, replace "directory" with the directory you want
 
 ## git log
-`got log`
+`git log`
 
 Shows the commit log with the most recent commit first. Displays commit ID, author, date, commit message.
 
