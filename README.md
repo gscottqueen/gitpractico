@@ -3,10 +3,10 @@
 ---
 ## Legend:
 
-### git command
+### $ git command
 description
 
-`common use`
+- `common use`
 
 ```
 A---B  Visual A
@@ -15,16 +15,18 @@ A---B  Visual A
 ```
 ---
 
-### git config
+## Common Git Commands
+
+### $ git config
 Your username and email address should be the same as the one used with your git hosting provider i.e. github, bitbucket, gitlab etc
 
-`git config --global user.name "username"`
-`git config --global user.email "email address"`
+- `git config --global user.name "username"`
+- `git config --global user.email "email address"`
 
-### git clone
+### $ git clone
 The repo is cloned into the specified directory, replace "directory" with the directory you want
 
-`git clone <repo-url> <directory>`
+- `git clone <repo-url> <directory>`
 
 ```
 A---B  origin <repo-url>
@@ -32,20 +34,20 @@ A---B  origin <repo-url>
       B  local <directory>
 ```
 
-### git log
+### $ git log
 Shows the commit logs all on one line
 
-`git log --pretty=oneline`
+- `git log --pretty=oneline`
 
-### git status
+### $ git status
 Show the working tree status in abbreviated form
 
-`git status --short`
+- `git status --short`
 
-### git branch
+### $ git branch
 Add a new branch and switch to the new branch
 
-`git checkout -b <new name>`
+- `git checkout -b <new name>`
 
 ```
 A---B  current <branch>
@@ -53,10 +55,10 @@ A---B  current <branch>
       B  new local <branch>
 ```
 
-### git diff
+### $ git diff
 `<sha1>` and `<sha2>` are the sha hash of the commits you want to compare
 
-`git diff <sha1> <sha2>`
+- `git diff <sha1> <sha2>`
 
 ```
 A---B  <sha1>
@@ -64,21 +66,21 @@ A---B  <sha1>
   A---B---C---D---E  <sha2>
 ```
 
-### git pull
+### $ git pull
 Incorporates changes from a remote repository into the current branch. In its default mode, git pull is shorthand for `git fetch` followed by `git merge FETCH_HEAD`
 
-`git pull origin <branch>`
+- `git pull origin <branch>`
 
 ```
-      A---B---C feature
+      A---B---C + G feature
      /       /
-D---E---F---G---H origin develop
+D---E---F---G  origin develop
 ```
 
-### git merge
+### $ git merge
 Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch.
 
-`git merge <branch-name>`
+- `git merge <branch-name>`
 
 ```
       A---B---C feature
@@ -86,19 +88,50 @@ Incorporates changes from the named commits (since the time their histories dive
 D---E---F---G---H master
 ```
 
-### git push
-git-push - Update remote refs along with associated objects
+### $ git push
+Update remote refs along with associated objects
 
+- `git push origin <branch-name>`
 
+```
+**local**
 
+      A---B---C feature
+     /
+D---E---F---G---H master
 
-### git revert/reset
+**remote origin before**
 
+      A  feature
+     /
+D---E---F---G---H master
 
-## git flow
+**remote origin after**
+
+      A---B---C feature
+     /
+D---E---F---G---H master
+```
+
+### $ git revert/reset
+
+### $ git merge --fast-forward
+[Top stack-overflow response](https://stackoverflow.com/a/29673993/9280297): "If Master has not diverged, instead of creating a new commit, git will just point master to the latest commit of the feature branch. This is a “fast forward.” There won't be any "merge commit" in fast-forwarding merge."
+
+**Resource** : [Git Branching Basic Branching and Merging](http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+
+### $ git push --force
+Overwrites the particular remote branch with your local version without any additional checks or asking for permission
+
+- `git push origin <branch> --force`
+
+<span style="color:red">DANGER ZONE</span>
+> A force push overwrites a remote branch with your local branch, regardless of the status of that remote branch. This is not ideal in a team scenario as it might result in one developer overwriting other developers’ commits (this could happen when the developer forgot to do a git pull to fetch the newer commits).
+
+## Git Flow
 Instead of a single master branch, this workflow uses two branches to record the history of the project. The master branch stores the official release history, and the develop branch serves as an integration branch for features.
 
-### git flow init
+### $ git flow init
 `git flow init` on an existing repo will create the develop branch
 
 Console considerations:
@@ -134,7 +167,7 @@ gitflow         | git
       develop  master
 ```
 
-### git flow feature start
+### $ git flow feature start
 Create a feature branch
 
 gitflow                            | git
@@ -146,10 +179,10 @@ gitflow                            | git
             /    \
       develop  master
       /   |       |
-feature   |       |
+feature
 ```
 
-### git flow feature publish
+### $ git flow feature publish
 Share a feature branch on the remote server
 
 gitflow                              | git
@@ -159,7 +192,7 @@ gitflow                              | git
 
 
 
-### git flow feature finish
+### $ git flow feature finish
 Finalize a feature branch
 
 gitflow                             | git
@@ -182,7 +215,8 @@ gitflow                             | git
 
 ---
 ## Resources
-[Bitbucket](https://www.atlassian.com/git/tutorials/saving-changes)
-[GitExplorer](https://gitexplorer.com/)
-[Git Flow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
-[Git Flow Breakdown](https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac)
+- [Git SCM](https://git-scm.com/doc)
+- [Bitbucket Git Docs](https://www.atlassian.com/git/tutorials/saving-changes)
+- [GitExplorer](https://gitexplorer.com/)
+- [Git Flow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+- [Git Flow Breakdown](https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac)
