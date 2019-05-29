@@ -13,6 +13,7 @@ description
 ## git config
 
 `git config --global user.name "username"`
+
 `git config --global user.email "email address"`
 
 Your username and email address should be the same as the one used with your git hosting provider i.e. github, bitbucket, gitlab etc
@@ -30,10 +31,13 @@ A---B  origin <repo-url>
 The repo is cloned into the specified directory, replace "directory" with the directory you want
 
 ## git log
+`got log`
+
+Shows the commit log with the most recent commit first. Displays commit ID, author, date, commit message.
 
 `git log --pretty=oneline`
 
-Shows the commit logs all on one line
+Same as above, but shows each commit on one line, displaying only the commit ID and commit message. 
 
 ## git status
 
