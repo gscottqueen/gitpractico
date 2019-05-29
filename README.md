@@ -1,23 +1,28 @@
 # gitpractico
 
 ---
-Legend:
-## git command
+## Legend:
+
+### git command
+description
 
 `common use`
 
-description
-
+```
+A---B  Visual A
+     \
+      B  Visual B
+```
 ---
 
-## git config
+### git config
+Your username and email address should be the same as the one used with your git hosting provider i.e. github, bitbucket, gitlab etc
 
 `git config --global user.name "username"`
 `git config --global user.email "email address"`
 
-Your username and email address should be the same as the one used with your git hosting provider i.e. github, bitbucket, gitlab etc
-
-## git clone
+### git clone
+The repo is cloned into the specified directory, replace "directory" with the directory you want
 
 `git clone <repo-url> <directory>`
 
@@ -27,21 +32,18 @@ A---B  origin <repo-url>
       B  local <directory>
 ```
 
-The repo is cloned into the specified directory, replace "directory" with the directory you want
-
-## git log
+### git log
+Shows the commit logs all on one line
 
 `git log --pretty=oneline`
 
-Shows the commit logs all on one line
-
-## git status
+### git status
+Show the working tree status in abbreviated form
 
 `git status --short`
 
-Show the working tree status in abbreviated form
-
-## git branch
+### git branch
+Add a new branch and switch to the new branch
 
 `git checkout -b <new name>`
 
@@ -51,9 +53,8 @@ A---B  current <branch>
       B  new local <branch>
 ```
 
-Add a new branch and switch to the new branch
-
-## git diff
+### git diff
+`<sha1>` and `<sha2>` are the sha hash of the commits you want to compare
 
 `git diff <sha1> <sha2>`
 
@@ -63,9 +64,8 @@ A---B  <sha1>
   A---B---C---D---E  <sha2>
 ```
 
-sha1 and sha2 are the sha hash of the commits you want to compare
-
-## git pull
+### git pull
+Incorporates changes from a remote repository into the current branch. In its default mode, git pull is shorthand for `git fetch` followed by `git merge FETCH_HEAD`
 
 `git pull origin <branch>`
 
@@ -75,9 +75,8 @@ sha1 and sha2 are the sha hash of the commits you want to compare
 D---E---F---G---H origin develop
 ```
 
-Incorporates changes from a remote repository into the current branch. In its default mode, git pull is shorthand for `git fetch` followed by `git merge FETCH_HEAD`
-
-## git merge
+### git merge
+Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch.
 
 `git merge <branch-name>`
 
@@ -87,27 +86,103 @@ Incorporates changes from a remote repository into the current branch. In its de
 D---E---F---G---H master
 ```
 
-Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch.
+### git push
+git-push - Update remote refs along with associated objects
 
-## git push
 
 
-## git revert/reset
+
+### git revert/reset
 
 
 ## git flow
+Instead of a single master branch, this workflow uses two branches to record the history of the project. The master branch stores the official release history, and the develop branch serves as an integration branch for features.
+
+### git flow init
+`git flow init` on an existing repo will create the develop branch
+
+Console considerations:
+
+```
+$ git flow init
+Initialized empty Git repository in ~/project/.git/
+No branches exist yet. Base branches must be created now.
+Branch name for production releases: [master]
+Branch name for "next release" development: [develop]
+
+How to name your supporting branch prefixes?
+Feature branches? [feature/]
+Release branches? [release/]
+Hotfix branches? [hotfix/]
+Support branches? [support/]
+Version tag prefix? []
+
+$ git branch
+* develop
+ master
+```
+
+gitflow         | git
+----------------|-----------------------------------------------
+`git flow init` | `git init`
+&nbsp;          | `git commit --allow-empty -m "Initial commit"`
+&nbsp;          | `git checkout -b develop master`
+
+```
+            origin
+            /    \
+      develop  master
+```
+
+### git flow feature start
+Create a feature branch
+
+gitflow                            | git
+-----------------------------------|--------------------------------------------
+`git flow feature start MYFEATURE` | `git checkout -b feature/MYFEATURE develop`
+
+```
+            origin
+            /    \
+      develop  master
+      /   |       |
+feature   |       |
+```
+
+### git flow feature publish
+Share a feature branch on the remote server
+
+gitflow                              | git
+-------------------------------------|------------------------------------
+`git flow feature publish MYFEATURE` | `git checkout feature/MYFEATURE`
+&nbsp;                               | `git push origin feature/MYFEATURE`
 
 
-## git flow init
 
+### git flow feature finish
+Finalize a feature branch
 
-## git flow feature start
+gitflow                             | git
+------------------------------------|--------------------------------------
+`git flow feature finish MYFEATURE` | `git checkout develop`
+&nbsp;                              | `git merge --no-ff feature/MYFEATURE`
+&nbsp;                              | `git branch -d feature/MYFEATURE`
 
+```
+            origin
+            /    \
+      develop  master
+      /   |       |
+  feature |       |
+     |    |       |
+      A   |       |
+       \  |       |
+          A       |
+```
 
-## git flow feature publish
-
-
-## git push origin <feature>
-
-
-## git flow feature finish
+---
+## Resources
+[Bitbucket](https://www.atlassian.com/git/tutorials/saving-changes)
+[GitExplorer](https://gitexplorer.com/)
+[Git Flow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+[Git Flow Breakdown](https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac)
