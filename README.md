@@ -125,7 +125,8 @@ Overwrites the particular remote branch with your local version without any addi
 
 - `git push origin <branch> --force`
 
-<span style="color:red">DANGER ZONE</span>
+![gif](images/r_292990_JmRu7.gif "Logo Title Text 1")
+<span style="color:red; font-weight:bold;">DANGER ZONE</span>
 > A force push overwrites a remote branch with your local branch, regardless of the status of that remote branch. This is not ideal in a team scenario as it might result in one developer overwriting other developers’ commits (this could happen when the developer forgot to do a git pull to fetch the newer commits).
 
 ## Git Flow
