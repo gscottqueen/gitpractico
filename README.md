@@ -1,4 +1,4 @@
-# gitpractico
+# itpractico
 
 ---
 ## Legend:
