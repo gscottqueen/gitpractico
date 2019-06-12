@@ -115,7 +115,13 @@ D---E---F---G---H master
 
 ### $ git revert/reset
 `git revert` creates a new commit that undoes the changes from a previous commit. This command adds new history to the project. If you want to undo more than one commit, let's say 5 commits, run `git revert HEAD~5`. 
+
 [Documentation on git-scm](https://git-scm.com/docs/git-revert)
+
+`git reset` basically just changes the commit that your local copy of the repository is pointing at - otherwise known as the "branch head." In order to roll back to a certain commit, grab the SHA for the commit that you want to roll back to (let's say e349b4c72640a0b8553330b620adf684963ba4b5) and run `git reset --hard e349b4c72640a0b8553330b620adf684963ba4b5`.  This will then restore your code to that commit so you can take a look at it. From there you could `git reset --hard` to another commit, or simply run `git pull` to get back up to speed. 
+
+There are several other options on the [git-scm documentation](https://git-scm.com/docs/git-reset). 
+
 
 ### $ git merge --fast-forward
 [Top stack-overflow response](https://stackoverflow.com/a/29673993/9280297): "If Master has not diverged, instead of creating a new commit, git will just point master to the latest commit of the feature branch. This is a “fast forward.” There won't be any "merge commit" in fast-forwarding merge."
