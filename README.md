@@ -114,6 +114,8 @@ D---E---F---G---H master
 ```
 
 ### $ git revert/reset
+`git revert` creates a new commit that undoes the changes from a previous commit. This command adds new history to the project. If you want to undo more than one commit, let's say 5 commits, run `git revert HEAD~5`. 
+[Documentation on git-scm](https://git-scm.com/docs/git-revert)
 
 ### $ git merge --fast-forward
 [Top stack-overflow response](https://stackoverflow.com/a/29673993/9280297): "If Master has not diverged, instead of creating a new commit, git will just point master to the latest commit of the feature branch. This is a “fast forward.” There won't be any "merge commit" in fast-forwarding merge."
